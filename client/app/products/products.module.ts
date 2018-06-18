@@ -5,25 +5,25 @@ import { ProductsService } from './products.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { TooltipModule } from 'ngx-bootstrap';
-const productsRoutes: Routes = [{
-    path: 'products',
-    component: ProductsComponent,
-}]
+import { ProductDetailsComponent } from './product-details/product-details.component';
+const productsRoutes: Routes = [
+    { path: '', redirectTo: 'products', pathMatch: 'full' },
+    { path: 'products', component: ProductsComponent },
+    { path: 'product-details/:id', component: ProductDetailsComponent }
+]
+export const routing = RouterModule.forChild(productsRoutes);
 @NgModule({
     imports: [
-        RouterModule.forChild(productsRoutes),
+        routing,
         BrowserModule,
-        FormsModule,
-        TooltipModule.forRoot(),
+        FormsModule
     ],
     declarations: [
-        ProductsComponent
+        ProductsComponent,
+        ProductDetailsComponent
     ],
-    // providers: [
-    //     ProductsService
-    // ],
-    exports: [
-        ProductsComponent
+    providers: [
+        ProductsService
     ]
 })
 export class ProductsModule { }

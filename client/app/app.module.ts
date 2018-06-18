@@ -31,6 +31,7 @@ import constants from './app.constants';
 import { ProductsModule } from './products/products.module';
 import { ProductsService } from './products/products.service';
 
+
 export function getAuthHttp(http) {
     return new AuthHttp(new AuthConfig({
         noJwtError: true,
@@ -43,7 +44,7 @@ let providers: Provider[] = [{
     provide: AuthHttp,
     useFactory: getAuthHttp,
     deps: [Http]
-}, ProductsService];
+}];
 
 if(constants.env === 'development') {
     @Injectable()
@@ -72,7 +73,7 @@ const appRoutes: Routes = [{ path: '',
         DirectivesModule,
         AccountModule,
         AdminModule,
-        ProductsModule
+        ProductsModule,
     ],
     declarations: [
         AppComponent,

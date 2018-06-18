@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4" *ngIf="products.length == 0"> No products to show.</div>
+        <div class="col-sm-6 col-md-4" *ngFor="let product of products">
+            <div class="thumbnail">
+                <img src="https://loremflickr.com/300/200" alt="{{product.title}}">
+                <div class="caption">
+                    <h3>{{product.title}}</h3>
+                    <p>{{product.description}} ...</p>
+                    <p>{{product.price | currency }}</p>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">Buy</a>
+                        <a [routerLink]="['/product-details', product._id]" class="btn btn-default" role="button">Details</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
