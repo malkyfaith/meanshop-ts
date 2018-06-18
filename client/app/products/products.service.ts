@@ -13,8 +13,14 @@ export class ProductsService {
         return this.productMocks;
     }
 
-    public get(product) {
-        return { _id: 1, title: 'Product 1', price: 123.45, quantity: 10, description: 'Lorem ipsum dolor sit amet' }
+    public get(id) {
+        let currP = null;
+        this.productMocks.forEach(p => {
+            if(p._id == id) {
+                currP = p;
+            }
+        })
+        return currP;
     }
 
     public create(product) {
