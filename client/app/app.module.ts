@@ -27,8 +27,9 @@ import { DirectivesModule } from '../components/directives.module';
 import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
 
-
 import constants from './app.constants';
+import { ProductsModule } from './products/products.module';
+import { ProductsService } from './products/products.service';
 
 export function getAuthHttp(http) {
     return new AuthHttp(new AuthConfig({
@@ -42,7 +43,7 @@ let providers: Provider[] = [{
     provide: AuthHttp,
     useFactory: getAuthHttp,
     deps: [Http]
-}];
+}, ProductsService];
 
 if(constants.env === 'development') {
     @Injectable()
@@ -71,6 +72,7 @@ const appRoutes: Routes = [{ path: '',
         DirectivesModule,
         AccountModule,
         AdminModule,
+        ProductsModule
     ],
     declarations: [
         AppComponent,
@@ -81,7 +83,7 @@ export class AppModule {
     static parameters = [ApplicationRef];
     constructor(private appRef: ApplicationRef) {
         this.appRef = appRef;
-    }
+    } 
 
     hmrOnInit(store) {
         if (!store || !store.state) return;
