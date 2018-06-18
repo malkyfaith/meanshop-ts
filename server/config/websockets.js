@@ -8,6 +8,7 @@ import primusEmit from 'primus-emit';
 
 const registerFunctions = [
     // Insert sockets below
+    require('../api/product/product.socket').register,
     require('../api/thing/thing.socket').register,
 ];
 
