@@ -62,13 +62,33 @@ export default function seedDatabaseIfNeeded() {
     promises.push(userPromise);
 
     let productPromise = Product.find({}).remove()
-        .then(() => Product.create({
-            title: 'MeanGlass',
-            price: 345.5,
-            stock: 10,
-            description: 'This is MeanGlass'
-        }).then(() => console.log('finished populating Products'))
-            .catch(err => console.log('error populating products', err)));
+        .then(() => Product.create(
+            {
+                title: 'MeanGlass',
+                price: 345.5,
+                stock: 10,
+                description: 'This is MeanGlass'
+            },
+            {
+                title: 'A Book',
+                price: 25,
+                stock: 10,
+                description: 'This is A book'
+            },
+            {
+                title: 'Cycle',
+                price: 125,
+                stock: 5,
+                description: 'This is A cycle'
+            },
+            {
+                title: 'Bus',
+                price: 16025,
+                stock: 3,
+                description: 'This is A Bus'
+            }))
+        .then(() => console.log('finished populating Products'))
+        .catch(err => console.log('error populating products', err));
 
     promises.push(productPromise);
 

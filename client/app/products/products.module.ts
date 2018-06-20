@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { TooltipModule } from 'ngx-bootstrap';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { HttpClientModule } from '@angular/common/http';
 const productsRoutes: Routes = [
     { path: '', redirectTo: 'products', pathMatch: 'full' },
     { path: 'products', component: ProductsComponent },
@@ -16,7 +17,8 @@ export const routing = RouterModule.forChild(productsRoutes);
     imports: [
         routing,
         BrowserModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule
     ],
     declarations: [
         ProductsComponent,
