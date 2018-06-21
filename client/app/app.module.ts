@@ -5,6 +5,7 @@ import {
     Provider,
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     Http,
     HttpModule,
@@ -30,12 +31,12 @@ import { AdminModule } from './admin/admin.module';
 import constants from './app.constants';
 import { ProductsModule } from './products/products.module';
 import { ProductsService } from './products/products.service';
-
+import { ToastrModule } from 'ngx-toastr';
 
 export function getAuthHttp(http) {
     return new AuthHttp(new AuthConfig({
         noJwtError: true,
-        globalHeaders: [{'Accept': 'application/json'}],
+        globalHeaders: [{ 'Accept': 'application/json' }],
         tokenGetter: (() => localStorage.getItem('id_token')),
     }), http);
 }
@@ -46,7 +47,7 @@ let providers: Provider[] = [{
     deps: [Http]
 }];
 
-if(constants.env === 'development') {
+if (constants.env === 'development') {
     @Injectable()
     class HttpOptions extends BaseRequestOptions {
         merge(options: RequestOptionsArgs): RequestOptions {
@@ -58,7 +59,8 @@ if(constants.env === 'development') {
     providers.push({ provide: RequestOptions, useClass: HttpOptions });
 }
 
-const appRoutes: Routes = [{ path: '',
+const appRoutes: Routes = [{
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
 }];
@@ -67,8 +69,13 @@ const appRoutes: Routes = [{ path: '',
     providers,
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         HttpModule,
         RouterModule.forRoot(appRoutes, { enableTracing: process.env.NODE_ENV === 'development' }),
+        ToastrModule.forRoot({
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+        }),
         MainModule,
         DirectivesModule,
         AccountModule,
@@ -84,7 +91,7 @@ export class AppModule {
     static parameters = [ApplicationRef];
     constructor(private appRef: ApplicationRef) {
         this.appRef = appRef;
-    } 
+    }
 
     hmrOnInit(store) {
         if (!store || !store.state) return;
@@ -107,7 +114,7 @@ export class AppModule {
         store.disposeOldHosts = createNewHosts(cmpLocation);
         // inject your AppStore and grab state then set it on store
         // var appState = this.AppStore.get()
-        store.state = {data: 'yolo'};
+        store.state = { data: 'yolo' };
         // store.state = Object.assign({}, appState)
         // save input values
         store.restoreInputValues = createInputTransfer();

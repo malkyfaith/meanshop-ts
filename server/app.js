@@ -16,6 +16,7 @@ import seedDatabaseIfNeeded from './config/seed';
 
 
 // Connect to MongoDB
+console.log(config.mongo);
 mongoose.connect(config.mongo.uri, config.mongo.options);
 mongoose.connection.on('error', function(err) {
     console.error(`MongoDB connection error: ${err}`);
@@ -25,6 +26,8 @@ mongoose.connection.on('error', function(err) {
 // Setup server
 var app = express();
 var server = http.createServer(app);
+
+// middlewares
 const wsInitPromise = initWebSocketServer(server);
 expressConfig(app);
 registerRoutes(app);

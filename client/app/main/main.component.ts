@@ -22,13 +22,13 @@ export class MainComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        return this.Http.get('/api/things')
-            .map(res => res.json())
-            // .catch(err => Observable.throw(err.json().error || 'Server error'))
-            .subscribe(things => {
-                this.awesomeThings = things;
-                this.SocketService.syncUpdates('thing', this.awesomeThings);
-            });
+        // return this.Http.get('/api/things')
+        //     .map(res => res.json())
+        //     // .catch(err => Observable.throw(err.json().error || 'Server error'))
+        //     .subscribe(things => {
+        //         this.awesomeThings = things;
+        //         this.SocketService.syncUpdates('thing', this.awesomeThings);
+        //     });
     }
 
 

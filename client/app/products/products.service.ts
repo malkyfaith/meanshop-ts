@@ -19,15 +19,15 @@ export class ProductsService {
         //return this.productMocks;
     }
 
-    public get(id): Observable<any> {
-        return this.http.get(`/api/products/${id}`);
+    public get(productId): Observable<any> {
+        return this.http.get(`/api/products/${productId}`);
     }
 
     public create(product) {
     }
 
-    public delete(product) {
-
+    public delete(productId) {
+        return this.http.delete(`/api/products/${productId}`);
     }
 
     public edit(product) {

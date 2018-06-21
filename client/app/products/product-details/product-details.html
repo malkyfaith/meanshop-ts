@@ -1,6 +1,6 @@
 <ng-template #loading>
-        Loading.......
-    </ng-template>
+    Loading.......
+</ng-template>
 <div class="container">
     <div class="row" *ngIf="product$ | async as product; else loading">
         <div class="col-sm-6 col-md-4 col-md-offset-2">
@@ -11,9 +11,9 @@
                 <p>{{product.price | currency }}</p>
                 <p>
                     <a href="#" class="btn btn-primary" role="button">Buy</a>
-                    <a ui-sref="products" class="btn btn-default" role="button">Back</a>
+                    <a [routerLink]="['/products']" class="btn btn-default" role="button">Back</a>
                     <a ui-sref="editProduct({id: product._id})" class="btn btn-default" role="button">Edit</a>
-                    <a class="btn btn-danger" ng-click="deleteProduct()">Delete</a>
+                    <a class="btn btn-danger" (click)="deleteProduct(product._id)">Delete</a>
                 </p>
             </div>
         </div>
