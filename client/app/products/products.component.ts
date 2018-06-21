@@ -24,4 +24,8 @@ export class ProductsComponent implements OnInit {
         this.productsService.delete(this.product);
     }
 
+    getRandomPics(i) {
+        return "https://picsum.photos/300/200?"+i;
+    }
+
 }

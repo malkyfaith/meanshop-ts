@@ -4,9 +4,9 @@
 <div class="container">
     <div *ngIf="products$ | async as products; else loading" class="row">
         <div class="col-sm-6 col-md-4" *ngIf="products.length == 0"> No products to show.</div>
-        <div class="col-sm-6 col-md-4" *ngFor="let product of products">
+        <div class="col-sm-6 col-md-4" *ngFor="let product of products; let i=index">
             <div class="thumbnail">
-                <img src="https://picsum.photos/300/200" alt="{{product.title}}">
+                <img [src]="getRandomPics(i)" alt="{{product.title}}">
                 <div class="caption">
                     <h3>{{product.title}}</h3>
                     <p>{{product.description}} ...</p>
