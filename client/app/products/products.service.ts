@@ -19,14 +19,8 @@ export class ProductsService {
         //return this.productMocks;
     }
 
-    public get(id) {
-        let currP = null;
-        this.productMocks.forEach(p => {
-            if(p._id == id) {
-                currP = p;
-            }
-        })
-        return currP;
+    public get(id): Observable<any> {
+        return this.http.get(`/api/products/${id}`);
     }
 
     public create(product) {

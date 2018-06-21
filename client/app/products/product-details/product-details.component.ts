@@ -6,7 +6,7 @@ import { ProductsService } from '../products.service';
     template: require('./product-details.html')
 })
 export class ProductDetailsComponent {
-    product = {};
+    product$ = {};
     constructor(@Inject(forwardRef(() => ProductsService)) private productsService: ProductsService, @Inject(forwardRef(() => ActivatedRoute)) private route: ActivatedRoute, @Inject(forwardRef(() => Router)) private router: Router) { }
 
     ngOnInit() {
@@ -19,7 +19,8 @@ export class ProductDetailsComponent {
     }
 
     getProductDetail(id) {
-        this.product = this.productsService.get(id);
+        this.product$ = this.productsService.get(id);
     }
 
+    
 }
